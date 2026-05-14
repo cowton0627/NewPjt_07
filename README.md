@@ -1,6 +1,13 @@
-# NewPjt_07
+<p align="center">
+  <img src="NewPjt_07/NewPjt_07/Assets.xcassets/AppIcon.appiconset/AppIcon.png" width="120" alt="Stellar App Icon" />
+</p>
 
-> iOS app for browsing NASA's Astronomy Picture of the Day. Swift + UIKit + MVVM.
+<h1 align="center">Stellar</h1>
+
+<p align="center">
+  iOS app for browsing NASA's Astronomy Picture of the Day.<br/>
+  Swift &middot; UIKit &middot; MVVM
+</p>
 
 從 [NASA APOD](https://apod.nasa.gov/apod/astropix.html) 資料集顯示每日天文圖。首頁進入縮圖牆，點圖看詳情（高解析圖 + 標題 + 日期 + 版權 + 描述）。
 
