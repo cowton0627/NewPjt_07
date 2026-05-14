@@ -2,7 +2,9 @@
 //  ViewController.swift
 //  NewPjt_07
 //
-//  Created by 鄭淳澧 on 2021/6/15.
+//  首頁：標題 + 進入圖庫的 CTA 按鈕。
+//  storyboard 中已連好按鈕的 segue 到 AstroCollectionViewController。
+//  這裡只負責把 system style 按鈕重新樣式化。
 //
 
 import UIKit
@@ -14,21 +16,10 @@ class ViewController: UIViewController {
         styleEntryButton()
     }
 
-    /// 把首頁那顆 system style 的 "Request" 按鈕，
-    /// 改成現代膠囊填色按鈕 + SF Symbol + 中文文案。
-    /// 不動 storyboard，從程式碼端找到 button 直接套樣式。
+    /// 把 storyboard 上原本的 "Request" system 按鈕，改成填色膠囊 + SF Symbol + 中文文案
     private func styleEntryButton() {
         guard let button = view.subviews.compactMap({ $0 as? UIButton }).first else {
             return
-        }
-
-        // storyboard 同時設了 centerY 與 top→label.bottom，兩條垂直約束打架，
-        // 拆掉 centerY 那條，讓按鈕老實貼在標題下方
-        for c in view.constraints
-        where c.firstAttribute == .centerY && c.secondAttribute == .centerY {
-            if (c.firstItem as? UIButton) === button {
-                c.isActive = false
-            }
         }
 
         if #available(iOS 15.0, *) {
@@ -47,7 +38,7 @@ class ViewController: UIViewController {
             config.attributedTitle = title
             button.configuration = config
         } else {
-            // iOS 14 fallback：手刻同等樣式
+            // iOS 14 fallback
             button.setTitle("探索圖庫", for: .normal)
             button.setTitleColor(.white, for: .normal)
             button.titleLabel?.font = .systemFont(ofSize: 17, weight: .semibold)
@@ -64,10 +55,8 @@ class ViewController: UIViewController {
             }
         }
 
-        // 按起來輕微回饋，現代 iOS 按鈕慣例
         button.addAction(UIAction { _ in
             UISelectionFeedbackGenerator().selectionChanged()
         }, for: .touchUpInside)
     }
 }
-

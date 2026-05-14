@@ -9,25 +9,41 @@
 /* Begin PBXBuildFile section */
 		2970DA8326789F1800646FAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2970DA8226789F1800646FAC /* AppDelegate.swift */; };
 		2970DA8526789F1800646FAC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2970DA8426789F1800646FAC /* SceneDelegate.swift */; };
-		2970DA8726789F1800646FAC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2970DA8626789F1800646FAC /* ViewController.swift */; };
 		2970DA8A26789F1800646FAC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2970DA8826789F1800646FAC /* Main.storyboard */; };
 		2970DA8C26789F2000646FAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2970DA8B26789F2000646FAC /* Assets.xcassets */; };
 		2970DA8F26789F2000646FAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2970DA8D26789F2000646FAC /* LaunchScreen.storyboard */; };
-		2970DA992678A6A600646FAC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2970DA982678A6A600646FAC /* DetailViewController.swift */; };
-		29CB0C562679B524007BA4A0 /* AstroCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CB0C552679B524007BA4A0 /* AstroCollectionViewController.swift */; };
+		A002000000000000000001BB /* Astro.swift in Sources */ = {isa = PBXBuildFile; fileRef = A001000000000000000001AA /* Astro.swift */; };
+		A002000000000000000002BB /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A001000000000000000002AA /* ImageLoader.swift */; };
+		A002000000000000000003BB /* AstroService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A001000000000000000003AA /* AstroService.swift */; };
+		A002000000000000000004BB /* AstroListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A001000000000000000004AA /* AstroListViewModel.swift */; };
+		A002000000000000000005BB /* AstroCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A001000000000000000005AA /* AstroCellViewModel.swift */; };
+		A002000000000000000006BB /* AstroDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A001000000000000000006AA /* AstroDetailViewModel.swift */; };
+		A002000000000000000007BB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A001000000000000000007AA /* ViewController.swift */; };
+		A002000000000000000008BB /* AstroCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A001000000000000000008AA /* AstroCollectionViewController.swift */; };
+		A002000000000000000009BB /* AstroCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A001000000000000000009AA /* AstroCollectionCell.swift */; };
+		A00200000000000000000ABB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000AAA /* DetailViewController.swift */; };
+		A00200000000000000000BBB /* DetailViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000BAA /* DetailViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2970DA7F26789F1800646FAC /* NewPjt_07.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewPjt_07.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2970DA8226789F1800646FAC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2970DA8426789F1800646FAC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2970DA8626789F1800646FAC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2970DA8926789F1800646FAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2970DA8B26789F2000646FAC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2970DA8E26789F2000646FAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2970DA9026789F2000646FAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2970DA982678A6A600646FAC /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		29CB0C552679B524007BA4A0 /* AstroCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstroCollectionViewController.swift; sourceTree = "<group>"; };
+		A001000000000000000001AA /* Astro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Astro.swift; sourceTree = "<group>"; };
+		A001000000000000000002AA /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		A001000000000000000003AA /* AstroService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstroService.swift; sourceTree = "<group>"; };
+		A001000000000000000004AA /* AstroListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstroListViewModel.swift; sourceTree = "<group>"; };
+		A001000000000000000005AA /* AstroCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstroCellViewModel.swift; sourceTree = "<group>"; };
+		A001000000000000000006AA /* AstroDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstroDetailViewModel.swift; sourceTree = "<group>"; };
+		A001000000000000000007AA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A001000000000000000008AA /* AstroCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstroCollectionViewController.swift; sourceTree = "<group>"; };
+		A001000000000000000009AA /* AstroCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstroCollectionCell.swift; sourceTree = "<group>"; };
+		A00100000000000000000AAA /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		A00100000000000000000BAA /* DetailViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,15 +78,55 @@
 			children = (
 				2970DA8226789F1800646FAC /* AppDelegate.swift */,
 				2970DA8426789F1800646FAC /* SceneDelegate.swift */,
-				2970DA8626789F1800646FAC /* ViewController.swift */,
-				29CB0C552679B524007BA4A0 /* AstroCollectionViewController.swift */,
-				2970DA982678A6A600646FAC /* DetailViewController.swift */,
+				A003000000000000000001CC /* Models */,
+				A003000000000000000002CC /* Services */,
+				A003000000000000000003CC /* ViewModels */,
+				A003000000000000000004CC /* Views */,
 				2970DA8826789F1800646FAC /* Main.storyboard */,
 				2970DA8B26789F2000646FAC /* Assets.xcassets */,
 				2970DA8D26789F2000646FAC /* LaunchScreen.storyboard */,
 				2970DA9026789F2000646FAC /* Info.plist */,
 			);
 			path = NewPjt_07;
+			sourceTree = "<group>";
+		};
+		A003000000000000000001CC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A001000000000000000001AA /* Astro.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A003000000000000000002CC /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A001000000000000000003AA /* AstroService.swift */,
+				A001000000000000000002AA /* ImageLoader.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A003000000000000000003CC /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				A001000000000000000004AA /* AstroListViewModel.swift */,
+				A001000000000000000005AA /* AstroCellViewModel.swift */,
+				A001000000000000000006AA /* AstroDetailViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		A003000000000000000004CC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A001000000000000000007AA /* ViewController.swift */,
+				A001000000000000000008AA /* AstroCollectionViewController.swift */,
+				A001000000000000000009AA /* AstroCollectionCell.swift */,
+				A00100000000000000000AAA /* DetailViewController.swift */,
+				A00100000000000000000BAA /* DetailViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,11 +199,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2970DA8726789F1800646FAC /* ViewController.swift in Sources */,
-				29CB0C562679B524007BA4A0 /* AstroCollectionViewController.swift in Sources */,
-				2970DA992678A6A600646FAC /* DetailViewController.swift in Sources */,
 				2970DA8326789F1800646FAC /* AppDelegate.swift in Sources */,
 				2970DA8526789F1800646FAC /* SceneDelegate.swift in Sources */,
+				A002000000000000000001BB /* Astro.swift in Sources */,
+				A002000000000000000002BB /* ImageLoader.swift in Sources */,
+				A002000000000000000003BB /* AstroService.swift in Sources */,
+				A002000000000000000004BB /* AstroListViewModel.swift in Sources */,
+				A002000000000000000005BB /* AstroCellViewModel.swift in Sources */,
+				A002000000000000000006BB /* AstroDetailViewModel.swift in Sources */,
+				A002000000000000000007BB /* ViewController.swift in Sources */,
+				A002000000000000000008BB /* AstroCollectionViewController.swift in Sources */,
+				A002000000000000000009BB /* AstroCollectionCell.swift in Sources */,
+				A00200000000000000000ABB /* DetailViewController.swift in Sources */,
+				A00200000000000000000BBB /* DetailViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
