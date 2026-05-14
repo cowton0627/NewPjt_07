@@ -23,7 +23,13 @@ class ViewController: UIViewController {
         }
 
         if #available(iOS 15.0, *) {
+            // 先清掉 storyboard 設的 "Request" 舊 title，
+            // 否則 configuration 套用後 button 仍會顯示舊文字。
+            button.setTitle(nil, for: .normal)
+            button.setTitle(nil, for: .highlighted)
+
             var config = UIButton.Configuration.filled()
+            config.title = "探索圖庫"
             config.image = UIImage(systemName: "sparkles")
             config.imagePadding = 8
             config.imagePlacement = .leading
@@ -33,9 +39,12 @@ class ViewController: UIViewController {
             config.contentInsets = NSDirectionalEdgeInsets(
                 top: 12, leading: 24, bottom: 12, trailing: 24
             )
-            var title = AttributedString("探索圖庫")
-            title.font = .systemFont(ofSize: 17, weight: .semibold)
-            config.attributedTitle = title
+            // iOS 15 推薦：用 transformer 套字型，這樣可被 dynamic type 自動更新
+            config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+                var outgoing = incoming
+                outgoing.font = .systemFont(ofSize: 17, weight: .semibold)
+                return outgoing
+            }
             button.configuration = config
         } else {
             // iOS 14 fallback
