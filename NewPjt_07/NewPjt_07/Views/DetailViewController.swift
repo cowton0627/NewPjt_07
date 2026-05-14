@@ -33,8 +33,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // storyboard 上半部固定區塊（date + image + title + cpy + 各 spacing）約 342pt
         let headerHeight: CGFloat = 342
         let bottomPadding: CGFloat = 24
-        // desLabel 左右 leading/trailing 各 7.5pt（storyboard 設定）
-        let descWidth = tableView.bounds.width - 15
+        // desLabel 左右各 DetailViewCell.horizontalInset，描述寬度要扣除
+        let descWidth = tableView.bounds.width - DetailViewCell.horizontalInset * 2
         return headerHeight + viewModel.descriptionHeight(forWidth: descWidth) + bottomPadding
     }
 

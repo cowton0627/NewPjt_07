@@ -31,10 +31,41 @@ class DetailViewCell: UITableViewCell {
         return v
     }()
 
+    /// imageView 與 desLabel 的左右邊距（pt）。
+    /// 變動時 DetailViewController.heightForRowAt 內的 descWidth 也要跟著調。
+    static let horizontalInset: CGFloat = 16
+
     override func awakeFromNib() {
         super.awakeFromNib()
         applyTypography()
         relaxStoryboardConstraints()
+        adjustHorizontalInsets()
+    }
+
+    /// storyboard 中 showImg 左右是 0pt、desLabel 左右是 7.5pt，貼太緊。
+    /// 在這裡覆寫 constant 改成 horizontalInset。
+    private func adjustHorizontalInsets() {
+        let inset = Self.horizontalInset
+        for c in contentView.constraints {
+            let firstView = c.firstItem as? UIView
+            let secondView = c.secondItem as? UIView
+            // showImg.leading = contentView.leading + inset
+            if c.firstAttribute == .leading && firstView === showImg {
+                c.constant = inset
+            }
+            // contentView.trailing = showImg.trailing + inset
+            if c.firstAttribute == .trailing && secondView === showImg {
+                c.constant = inset
+            }
+            // desLabel.leading = contentView.leading + inset
+            if c.firstAttribute == .leading && firstView === desLabel {
+                c.constant = inset
+            }
+            // contentView.trailing = desLabel.trailing + inset
+            if c.firstAttribute == .trailing && secondView === desLabel {
+                c.constant = inset
+            }
+        }
     }
 
     /// 拆掉 storyboard 中 dateLabel / cpyLabel 對 contentView 的 centerY 約束。
