@@ -81,6 +81,23 @@ final class AstroDetailViewModel {
         return ceil(rect.height)
     }
 
+    /// 標題在指定寬度下需要的高度。
+    /// 字體要跟 DetailViewCell.applyTypography 中 titleLabel.font 一致，
+    /// 不然算出來的高度跟實際渲染對不上。
+    func titleHeight(forWidth width: CGFloat) -> CGFloat {
+        guard let text = astro.title, !text.isEmpty, width > 0 else { return 0 }
+        let attr = NSAttributedString(
+            string: text,
+            attributes: [.font: UIFont.systemFont(ofSize: 22, weight: .bold)]
+        )
+        let rect = attr.boundingRect(
+            with: CGSize(width: width, height: .greatestFiniteMagnitude),
+            options: [.usesLineFragmentOrigin, .usesFontLeading],
+            context: nil
+        )
+        return ceil(rect.height)
+    }
+
     // MARK: - DateFormatter（建構成本高，整 app 共用一份）
 
     private static let dateFormatter: DateFormatter = {

@@ -66,6 +66,17 @@ class DetailViewCell: UITableViewCell {
                 c.constant = inset
             }
         }
+
+        // storyboard 沒給 titleLabel 任何 leading/trailing 約束，
+        // 配合 numberOfLines = 0 補上「不能超出邊界」的限制，過長就自動換行。
+        // 用 GTE/LTE 而非 equal，配合 centerX 約束：短 title 仍然按 intrinsic 寬居中，
+        // 長 title 撞到邊界才 wrap。
+        NSLayoutConstraint.activate([
+            titleLabel.leadingAnchor.constraint(
+                greaterThanOrEqualTo: contentView.leadingAnchor, constant: inset),
+            titleLabel.trailingAnchor.constraint(
+                lessThanOrEqualTo: contentView.trailingAnchor, constant: -inset),
+        ])
     }
 
     /// 拆掉 storyboard 中 dateLabel / cpyLabel 對 contentView 的 centerY 約束。
@@ -93,6 +104,7 @@ class DetailViewCell: UITableViewCell {
         titleLabel.textColor = .label
         titleLabel.numberOfLines = 0
         titleLabel.textAlignment = .center
+        titleLabel.lineBreakMode = .byWordWrapping
 
         cpyLabel.font = .systemFont(ofSize: 13, weight: .regular)
         cpyLabel.textColor = .secondaryLabel

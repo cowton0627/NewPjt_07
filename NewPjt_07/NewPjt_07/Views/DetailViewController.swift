@@ -30,12 +30,18 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { 1 }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        // storyboard 上半部固定區塊（date + image + title + cpy + 各 spacing）約 342pt
-        let headerHeight: CGFloat = 342
+        // storyboard 各段固定高度（拆開列出較清楚）：
+        //   topMargin(11) + date(21) + spacing(15) + image(229.5) + spacing(7.5) = 284
+        let topToTitle: CGFloat = 284
+        //   spacing(7.5) + cpy(21) + spacing(8) = 36.5
+        let titleToDesc: CGFloat = 36.5
         let bottomPadding: CGFloat = 24
-        // desLabel 左右各 DetailViewCell.horizontalInset，描述寬度要扣除
-        let descWidth = tableView.bounds.width - DetailViewCell.horizontalInset * 2
-        return headerHeight + viewModel.descriptionHeight(forWidth: descWidth) + bottomPadding
+
+        let insetWidth = tableView.bounds.width - DetailViewCell.horizontalInset * 2
+        let titleHeight = viewModel.titleHeight(forWidth: insetWidth)
+        let descHeight = viewModel.descriptionHeight(forWidth: insetWidth)
+
+        return topToTitle + titleHeight + titleToDesc + descHeight + bottomPadding
     }
 
     func tableView(_ tableView: UITableView,
