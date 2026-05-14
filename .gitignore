@@ -1,0 +1,40 @@
+# macOS
+.DS_Store
+
+# Xcode 個人狀態 / 衍生
+xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+*.xccheckout
+
+# Build / 衍生
+build/
+DerivedData/
+*.xcarchive
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Swift Package Manager
+.swiftpm/
+.build/
+Packages/
+Package.pins
+Package.resolved
+
+# CocoaPods（若日後使用）
+Pods/
+
+# Carthage（若日後使用）
+Carthage/Build/
+
+# fastlane（若日後使用）
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+# 環境變數 / 機密
+.env
+.env.*
+!.env.example
