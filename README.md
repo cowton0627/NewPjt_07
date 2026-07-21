@@ -34,6 +34,9 @@
 - 詳情頁:大圖（aspect fit + 黑底）、日期 caption、標題、版權、描述（含行距 + 動態 row height，長描述可捲動）
 - 圖片載入：背景下載 + `NSCache` 記憶體快取 + `URLCache` HTTP 快取 + ImageIO downsample（避免高解析原圖吃光記憶體）
 - cell 重用時取消上一張下載任務，避免「晚到的圖蓋掉新 cell」
+- loading / empty / error 狀態與重試、下拉更新
+- Service protocol dependency injection，可用 fake service 隔離網路進行測試
+- HTTP status code、Content-Type 與 decoding error 邊界處理
 
 ---
 
@@ -46,6 +49,18 @@
 | Swift | 5.0 |
 
 無第三方套件，純 UIKit。
+
+## 測試
+
+```bash
+xcodebuild test \
+  -project StellarAPOD/StellarAPOD.xcodeproj \
+  -scheme StellarAPOD \
+  -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest' \
+  CODE_SIGNING_ALLOWED=NO
+```
+
+測試涵蓋 APOD JSON 解碼，以及 ViewModel 的 loading、loaded、empty、failed 狀態轉換；GitHub Actions 會在 push 與 pull request 時自動執行。
 
 ---
 

@@ -4,12 +4,12 @@
 
 ## P0：展示前優先完成
 
-- 加入 loading、empty、error 三種明確畫面狀態；錯誤畫面提供「重試」，不要只顯示一次性 alert。
-- 驗證 HTTP status code 與 MIME type，保留底層 decoding error，讓錯誤可診斷。
-- 對 `AstroService` 與 `ImageLoader` 做 dependency injection，避免 ViewModel 綁死 singleton。
-- 加入 unit tests：成功解碼、格式錯誤、網路錯誤、ViewModel 狀態轉換與日期顯示。
+- [x] 加入 loading、empty、error 三種明確畫面狀態；錯誤畫面提供「重試」，不要只顯示一次性 alert。
+- [x] 驗證 HTTP status code 與 MIME type，保留底層 decoding error，讓錯誤可診斷。
+- [ ] 對 Service 做完整 dependency injection。目前已完成 `AstroService`／ViewModel，`ImageLoader` 待後續處理。
+- [ ] 擴充 unit tests。目前已涵蓋成功解碼、格式錯誤與 ViewModel 狀態轉換，URLSession 邊界與日期顯示待補。
 - README 放入真實截圖或 30–60 秒操作 GIF，移除 placeholder 說明，並寫清楚自己的設計決策與取捨。
-- 確認專案可在乾淨環境 build，並加入 GitHub Actions 執行 build 與 tests。
+- [x] 加入 GitHub Actions 執行 build 與 tests；首次 workflow 執行後再確認 runner 相容性。
 
 ## P1：強化使用體驗與技術深度
 
@@ -32,4 +32,3 @@
 3. 用架構圖說明 View → ViewModel → Service，以及 dependency injection 如何讓測試隔離網路。
 4. 打開一個代表性測試，再說明圖片 downsampling、cache 與 cell reuse 的記憶體／競態考量。
 5. 最後說明尚未完成的限制與下一步，展現取捨能力。
-

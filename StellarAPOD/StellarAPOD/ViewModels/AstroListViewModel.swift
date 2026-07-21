@@ -11,11 +11,23 @@ import Foundation
 
 final class AstroListViewModel {
 
+    enum State {
+        case idle
+        case loading
+        case loaded
+        case empty
+        case failed(String)
+    }
+
     private(set) var astros: [Astro] = []
+    private let service: AstroServicing
+
+    init(service: AstroServicing = AstroService.shared) {
+        self.service = service
+    }
 
     /// View 在 viewDidLoad 註冊；資料更新時主線程回呼
-    var onAstrosUpdated: (() -> Void)?
-    var onError: ((String) -> Void)?
+    var onStateChange: ((State) -> Void)?
 
     var numberOfItems: Int { astros.count }
 
@@ -26,14 +38,15 @@ final class AstroListViewModel {
     }
 
     func fetch() {
-        AstroService.shared.fetchAstros { [weak self] result in
+        onStateChange?(.loading)
+        service.fetchAstros { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let list):
                 self.astros = list
-                self.onAstrosUpdated?()
+                self.onStateChange?(list.isEmpty ? .empty : .loaded)
             case .failure(let error):
-                self.onError?(error.localizedDescription)
+                self.onStateChange?(.failed(error.localizedDescription))
             }
         }
     }
