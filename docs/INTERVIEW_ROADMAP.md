@@ -7,7 +7,7 @@
 - [x] 加入 loading、empty、error 三種明確畫面狀態；錯誤畫面提供「重試」，不要只顯示一次性 alert。
 - [x] 驗證 HTTP status code 與 MIME type，保留底層 decoding error，讓錯誤可診斷。
 - [x] 對 `AstroService` 與 `ImageLoader` 做 dependency injection，避免 ViewModel／Cell 綁死具體實作。
-- [ ] 擴充 unit tests。目前已涵蓋成功解碼、格式錯誤與 ViewModel 狀態轉換，URLSession 邊界與日期顯示待補。
+- [x] 擴充 unit tests，涵蓋成功解碼、格式錯誤、ViewModel 狀態轉換、URLSession 回應邊界與日期顯示。
 - README 放入真實截圖或 30–60 秒操作 GIF，移除 placeholder 說明，並寫清楚自己的設計決策與取捨。
 - [x] 加入 GitHub Actions 執行 build 與 tests；首次 workflow 執行後再確認 runner 相容性。
 

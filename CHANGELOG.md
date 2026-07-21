@@ -2,6 +2,13 @@
 
 本專案的重要變更記錄於此。
 
+## 2026-07-21（URLSession 邊界與日期測試）
+
+- `AstroService` 支援注入 `URLSession` 與 endpoint，讓網路行為可使用 mock `URLProtocol` 隔離測試。
+- 補齊成功回應、非 HTTP response、HTTP 錯誤、Content-Type、空資料、transport error、無效 endpoint 與 decoding error 測試。
+- 日期解析與顯示固定使用 Gregorian calendar、`en_US_POSIX` locale 與 UTC，避免裝置語系或時區造成結果漂移。
+- 新增詳情頁日期格式與缺少日期 placeholder 測試；完整測試套件共 17 項，全部通過。
+
 ## 2026-07-21（目錄結構標準化）
 
 - 修正搬移時產生的 `StellarAPOD/NewPjt_07/` 錯誤巢狀目錄。

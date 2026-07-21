@@ -102,6 +102,9 @@ final class AstroDetailViewModel {
 
     private static let dateFormatter: DateFormatter = {
         let f = DateFormatter()
+        f.calendar = Calendar(identifier: .gregorian)
+        f.locale = Locale(identifier: "en_US_POSIX")
+        f.timeZone = TimeZone(secondsFromGMT: 0)
         f.dateFormat = "yyyy MMM. dd"
         return f
     }()

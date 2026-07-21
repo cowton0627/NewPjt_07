@@ -14,9 +14,16 @@ protocol AstroServicing {
 
 final class AstroService: AstroServicing {
     static let shared = AstroService()
-    private init() {}
+    private let session: URLSession
+    private let endpoint: URL?
 
-    private let endpoint = "https://raw.githubusercontent.com/cmmobile/NasaDataSet/main/apod.json"
+    init(
+        session: URLSession = .shared,
+        endpoint: URL? = URL(string: "https://raw.githubusercontent.com/cmmobile/NasaDataSet/main/apod.json")
+    ) {
+        self.session = session
+        self.endpoint = endpoint
+    }
 
     enum ServiceError: LocalizedError {
         case invalidURL
@@ -45,11 +52,11 @@ final class AstroService: AstroServicing {
     }
 
     func fetchAstros(completion: @escaping (Result<[Astro], Error>) -> Void) {
-        guard let url = URL(string: endpoint) else {
+        guard let url = endpoint else {
             DispatchQueue.main.async { completion(.failure(ServiceError.invalidURL)) }
             return
         }
-        URLSession.shared.dataTask(with: url) { data, response, error in
+        session.dataTask(with: url) { data, response, error in
             if let error = error {
                 DispatchQueue.main.async { completion(.failure(error)) }
                 return
@@ -65,20 +72,24 @@ final class AstroService: AstroServicing {
                 return
             }
             let contentType = response.value(forHTTPHeaderField: "Content-Type")
-            let supportedType = contentType?.contains("json") == true ||
-                contentType?.contains("text/plain") == true
+            let normalizedContentType = contentType?.lowercased()
+            let supportedType = normalizedContentType?.contains("json") == true ||
+                normalizedContentType?.contains("text/plain") == true
             guard supportedType else {
                 DispatchQueue.main.async {
                     completion(.failure(ServiceError.unsupportedContentType(contentType)))
                 }
                 return
             }
-            guard let data = data else {
+            guard let data = data, !data.isEmpty else {
                 DispatchQueue.main.async { completion(.failure(ServiceError.emptyData)) }
                 return
             }
             let decoder = JSONDecoder()
             let formatter = DateFormatter()
+            formatter.calendar = Calendar(identifier: .gregorian)
+            formatter.locale = Locale(identifier: "en_US_POSIX")
+            formatter.timeZone = TimeZone(secondsFromGMT: 0)
             formatter.dateFormat = "yyyy-MM-dd"
             decoder.dateDecodingStrategy = .formatted(formatter)
             do {
