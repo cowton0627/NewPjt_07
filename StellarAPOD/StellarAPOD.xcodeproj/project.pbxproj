@@ -26,7 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2970DA7F26789F1800646FAC /* NewPjt_07.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewPjt_07.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2970DA7F26789F1800646FAC /* StellarAPOD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StellarAPOD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2970DA8226789F1800646FAC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2970DA8426789F1800646FAC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		2970DA8926789F1800646FAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -60,7 +60,7 @@
 		2970DA7626789F1700646FAC = {
 			isa = PBXGroup;
 			children = (
-				2970DA8126789F1800646FAC /* NewPjt_07 */,
+				2970DA8126789F1800646FAC /* StellarAPOD */,
 				2970DA8026789F1800646FAC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -68,12 +68,12 @@
 		2970DA8026789F1800646FAC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2970DA7F26789F1800646FAC /* NewPjt_07.app */,
+				2970DA7F26789F1800646FAC /* StellarAPOD.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2970DA8126789F1800646FAC /* NewPjt_07 */ = {
+		2970DA8126789F1800646FAC /* StellarAPOD */ = {
 			isa = PBXGroup;
 			children = (
 				2970DA8226789F1800646FAC /* AppDelegate.swift */,
@@ -87,7 +87,7 @@
 				2970DA8D26789F2000646FAC /* LaunchScreen.storyboard */,
 				2970DA9026789F2000646FAC /* Info.plist */,
 			);
-			path = NewPjt_07;
+			path = StellarAPOD;
 			sourceTree = "<group>";
 		};
 		A003000000000000000001CC /* Models */ = {
@@ -132,9 +132,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2970DA7E26789F1800646FAC /* NewPjt_07 */ = {
+		2970DA7E26789F1800646FAC /* StellarAPOD */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2970DA9326789F2000646FAC /* Build configuration list for PBXNativeTarget "NewPjt_07" */;
+			buildConfigurationList = 2970DA9326789F2000646FAC /* Build configuration list for PBXNativeTarget "StellarAPOD" */;
 			buildPhases = (
 				2970DA7B26789F1800646FAC /* Sources */,
 				2970DA7C26789F1800646FAC /* Frameworks */,
@@ -144,9 +144,9 @@
 			);
 			dependencies = (
 			);
-			name = NewPjt_07;
-			productName = NewPjt_07;
-			productReference = 2970DA7F26789F1800646FAC /* NewPjt_07.app */;
+			name = StellarAPOD;
+			productName = StellarAPOD;
+			productReference = 2970DA7F26789F1800646FAC /* StellarAPOD.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -163,7 +163,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2970DA7A26789F1700646FAC /* Build configuration list for PBXProject "NewPjt_07" */;
+			buildConfigurationList = 2970DA7A26789F1700646FAC /* Build configuration list for PBXProject "StellarAPOD" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -176,7 +176,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2970DA7E26789F1800646FAC /* NewPjt_07 */,
+				2970DA7E26789F1800646FAC /* StellarAPOD */,
 			);
 		};
 /* End PBXProject section */
@@ -359,12 +359,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = NewPjt_07/Info.plist;
+				INFOPLIST_FILE = StellarAPOD/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "ClcStudio.NewPjt-07";
+				PRODUCT_BUNDLE_IDENTIFIER = ClcStudio.StellarAPOD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -377,12 +377,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = NewPjt_07/Info.plist;
+				INFOPLIST_FILE = StellarAPOD/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "ClcStudio.NewPjt-07";
+				PRODUCT_BUNDLE_IDENTIFIER = ClcStudio.StellarAPOD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -392,7 +392,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2970DA7A26789F1700646FAC /* Build configuration list for PBXProject "NewPjt_07" */ = {
+		2970DA7A26789F1700646FAC /* Build configuration list for PBXProject "StellarAPOD" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2970DA9126789F2000646FAC /* Debug */,
@@ -401,7 +401,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2970DA9326789F2000646FAC /* Build configuration list for PBXNativeTarget "NewPjt_07" */ = {
+		2970DA9326789F2000646FAC /* Build configuration list for PBXNativeTarget "StellarAPOD" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2970DA9426789F2000646FAC /* Debug */,

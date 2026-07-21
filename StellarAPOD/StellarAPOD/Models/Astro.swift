@@ -1,6 +1,6 @@
 //
 //  Astro.swift
-//  NewPjt_07
+//  StellarAPOD
 //
 
 import Foundation

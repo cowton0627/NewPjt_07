@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="NewPjt_07/NewPjt_07/Assets.xcassets/AppIcon.appiconset/AppIcon.png" width="120" alt="Stellar App Icon" />
+  <img src="StellarAPOD/StellarAPOD/Assets.xcassets/AppIcon.appiconset/AppIcon.png" width="120" alt="Stellar App Icon" />
 </p>
 
 <h1 align="center">Stellar</h1>
@@ -52,9 +52,9 @@
 ## 怎麼跑
 
 ```bash
-git clone https://github.com/cowton0627/NewPjt_07.git
-cd NewPjt_07
-open NewPjt_07/NewPjt_07.xcodeproj
+git clone https://github.com/cowton0627/StellarAPOD.git
+cd StellarAPOD
+open StellarAPOD/StellarAPOD.xcodeproj
 ```
 
 在 Xcode 內按 ⌘R 編譯並執行（模擬器或實機皆可）。首次執行會從遠端抓 JSON 與圖片，需要網路。
@@ -64,7 +64,7 @@ open NewPjt_07/NewPjt_07.xcodeproj
 ## 專案結構
 
 ```
-NewPjt_07/NewPjt_07/
+StellarAPOD/StellarAPOD/
 ├── AppDelegate.swift
 ├── SceneDelegate.swift
 ├── Info.plist

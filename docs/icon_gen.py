@@ -1,4 +1,4 @@
-"""Generate NewPjt_07 App Icon — Moon + Sparkles on deep navy gradient."""
+"""Generate the StellarAPOD App Icon — Moon + Sparkles on deep navy gradient."""
 from PIL import Image, ImageDraw, ImageFilter
 import random
 
@@ -106,6 +106,6 @@ def build() -> Image.Image:
 
 if __name__ == '__main__':
     out = build()
-    out.save('/Users/chunlicheng/Desktop/NewPjt_07/docs/screenshots/app_icon_preview.png',
+    out.save('/Users/chunlicheng/Desktop/StellarAPOD/docs/screenshots/app_icon_preview.png',
              optimize=True)
     print('saved preview')

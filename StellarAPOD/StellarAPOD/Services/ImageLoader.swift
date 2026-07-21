@@ -1,6 +1,6 @@
 //
 //  ImageLoader.swift
-//  NewPjt_07
+//  StellarAPOD
 //
 //  非主線程下載 + NSCache 記憶體快取 + ImageIO downsample。
 //  caller 重用 cell 時可 cancel 回傳的 task，避免「晚到的圖蓋掉新 cell」。

@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  NewPjt_07
+//  StellarAPOD
 //
 //  首頁：標題 + 進入圖庫的 CTA 按鈕。
 //  storyboard 中已連好按鈕的 segue 到 AstroCollectionViewController。

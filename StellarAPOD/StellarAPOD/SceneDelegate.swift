@@ -1,6 +1,6 @@
 //
 //  SceneDelegate.swift
-//  NewPjt_07
+//  StellarAPOD
 //
 //  Created by 鄭淳澧 on 2021/6/15.
 //
@@ -49,4 +49,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
 }
-

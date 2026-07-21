@@ -1,6 +1,6 @@
 //
 //  DetailViewController.swift
-//  NewPjt_07
+//  StellarAPOD
 //
 //  詳情頁 VC。由上一頁透過 IBSegueAction 注入 viewModel。
 //  storyboard 寫死 rowHeight=651.5 且 desLabel 沒有 bottom→contentView 約束，

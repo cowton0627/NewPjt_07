@@ -1,6 +1,6 @@
 //
 //  AstroCollectionViewController.swift
-//  NewPjt_07
+//  StellarAPOD
 //
 //  縮圖牆。VC 只持有 ViewModel，不再持有 [Astro] 或直接打 API。
 //

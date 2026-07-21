@@ -1,6 +1,6 @@
 //
 //  DetailViewCell.swift
-//  NewPjt_07
+//  StellarAPOD
 //
 //  詳情頁 cell：標題 / 圖 / 日期 / 版權 / 描述。
 //  storyboard 內 dateLabel / cpyLabel 對 contentView 有 centerY 約束，

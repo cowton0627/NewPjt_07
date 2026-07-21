@@ -1,6 +1,6 @@
 //
 //  AstroDetailViewModel.swift
-//  NewPjt_07
+//  StellarAPOD
 //
 //  詳情頁的呈現邏輯：
 //  - 純文字屬性（title / copyrightText）

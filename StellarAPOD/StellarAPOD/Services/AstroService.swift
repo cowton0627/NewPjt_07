@@ -1,6 +1,6 @@
 //
 //  AstroService.swift
-//  NewPjt_07
+//  StellarAPOD
 //
 //  抽離 API 與 JSON 解碼；VC / ViewModel 都不再直接碰 URLSession。
 //  callback 一律在主線程。

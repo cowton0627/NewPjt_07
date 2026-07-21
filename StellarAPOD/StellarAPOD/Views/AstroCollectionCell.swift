@@ -1,6 +1,6 @@
 //
 //  AstroCollectionCell.swift
-//  NewPjt_07
+//  StellarAPOD
 //
 //  縮圖牆單格：圓角卡片 + 圖片底部漸層遮罩 + 白色標題。
 //  cell 重用時取消上一張下載任務，避免「晚到的圖蓋掉新 cell」。

@@ -1,6 +1,6 @@
 //
 //  AstroListViewModel.swift
-//  NewPjt_07
+//  StellarAPOD
 //
 //  整頁的 [Astro] 狀態 + fetch + binding。
 //  View 只透過 numberOfItems / cellViewModel(at:) / astro(at:) 取資料，
