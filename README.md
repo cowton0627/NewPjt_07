@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="StellarAPOD/StellarAPOD/Assets.xcassets/AppIcon.appiconset/AppIcon.png" width="120" alt="Stellar App Icon" />
+  <img src="StellarAPOD/Assets.xcassets/AppIcon.appiconset/AppIcon.png" width="120" alt="Stellar App Icon" />
 </p>
 
 <h1 align="center">Stellar</h1>
@@ -57,7 +57,7 @@
 
 ```bash
 xcodebuild test \
-  -project StellarAPOD/StellarAPOD.xcodeproj \
+  -project StellarAPOD.xcodeproj \
   -scheme StellarAPOD \
   -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest' \
   CODE_SIGNING_ALLOWED=NO
@@ -72,7 +72,7 @@ xcodebuild test \
 ```bash
 git clone https://github.com/cowton0627/StellarAPOD.git
 cd StellarAPOD
-open StellarAPOD/StellarAPOD.xcodeproj
+open StellarAPOD.xcodeproj
 ```
 
 在 Xcode 內按 ⌘R 編譯並執行（模擬器或實機皆可）。首次執行會從遠端抓 JSON 與圖片，需要網路。
@@ -82,7 +82,7 @@ open StellarAPOD/StellarAPOD.xcodeproj
 ## 專案結構
 
 ```
-StellarAPOD/StellarAPOD/
+StellarAPOD/
 ├── AppDelegate.swift
 ├── SceneDelegate.swift
 ├── Info.plist

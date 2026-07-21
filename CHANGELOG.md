@@ -2,6 +2,13 @@
 
 本專案的重要變更記錄於此。
 
+## 2026-07-21（目錄結構標準化）
+
+- 修正搬移時產生的 `StellarAPOD/NewPjt_07/` 錯誤巢狀目錄。
+- 將 Xcode project、App source 與 tests 移到 repository 根目錄下的標準位置。
+- 最終結構統一為 `StellarAPOD.xcodeproj`、`StellarAPOD/`、`StellarAPODTests/`。
+- 同步更新 README 與 GitHub Actions 的 project 路徑。
+
 ## 2026-07-21（圖片管線與搜尋）
 
 - 抽象 `ImageLoading`，collection/detail cell 可注入圖片載入器。

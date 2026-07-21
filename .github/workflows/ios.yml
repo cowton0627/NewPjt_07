@@ -13,7 +13,7 @@ jobs:
       - name: Build and test
         run: |
           xcodebuild test \
-            -project StellarAPOD/StellarAPOD.xcodeproj \
+            -project StellarAPOD.xcodeproj \
             -scheme StellarAPOD \
             -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest' \
             CODE_SIGNING_ALLOWED=NO
