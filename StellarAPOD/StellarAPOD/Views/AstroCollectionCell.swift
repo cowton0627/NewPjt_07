@@ -12,7 +12,8 @@ class AstroCollectionCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var showImg: UIImageView!
 
-    private var currentTask: URLSessionDataTask?
+    var imageLoader: ImageLoading = ImageLoader.shared
+    private var currentTask: ImageLoadCancellable?
 
     private lazy var indicator: UIActivityIndicatorView = {
         let v = UIActivityIndicatorView(style: .medium)
@@ -60,6 +61,7 @@ class AstroCollectionCell: UICollectionViewCell {
         titleLabel.layer.shadowOpacity = 0.6
         titleLabel.layer.shadowOffset  = CGSize(width: 0, height: 0.5)
         titleLabel.layer.shadowRadius  = 1.5
+        isAccessibilityElement = true
     }
 
     override func layoutSubviews() {
@@ -84,7 +86,10 @@ class AstroCollectionCell: UICollectionViewCell {
         guard let url = viewModel.imageURL else { return }
         indicator.startAnimating()
 
-        currentTask = ImageLoader.shared.load(
+        accessibilityLabel = viewModel.title ?? "天文圖片"
+        accessibilityHint = "點兩下查看詳情"
+
+        currentTask = imageLoader.load(
             from: url,
             targetSize: showImg.bounds.size
         ) { [weak self] image in
@@ -100,5 +105,6 @@ class AstroCollectionCell: UICollectionViewCell {
         showImg.image = nil
         indicator.stopAnimating()
         titleLabel.text = nil
+        accessibilityLabel = nil
     }
 }

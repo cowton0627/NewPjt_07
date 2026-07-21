@@ -2,6 +2,14 @@
 
 本專案的重要變更記錄於此。
 
+## 2026-07-21（圖片管線與搜尋）
+
+- 抽象 `ImageLoading`，collection/detail cell 可注入圖片載入器。
+- 合併相同 URL 的同時下載，並讓每個 cell 可獨立取消訂閱。
+- 圖片快取 cost 改以解碼後像素記憶體計算。
+- 清單依日期由新到舊排序，新增標題、描述與作者搜尋。
+- 加入清單 cell VoiceOver label／hint，以及狀態畫面的 Dynamic Type。
+
 ## 2026-07-21（面試作品強化）
 
 - 新增 loading、empty、error、retry 狀態及 pull-to-refresh。

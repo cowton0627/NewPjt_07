@@ -44,6 +44,28 @@ final class AstroListViewModelTests: XCTestCase {
         XCTAssertEqual(failureMessage, "伺服器回傳錯誤（HTTP 503）")
     }
 
+    func testResultsAreSortedNewestFirstAndSearchable() {
+        let old = Astro(title: "Old Moon", url: nil, hdurl: nil,
+                        date: Date(timeIntervalSince1970: 100),
+                        copyright: "NASA", description: "Lunar surface")
+        let new = Astro(title: "New Earth", url: nil, hdurl: nil,
+                        date: Date(timeIntervalSince1970: 200),
+                        copyright: "ESA", description: "Blue planet")
+        let viewModel = AstroListViewModel(
+            service: StubAstroService(result: .success([old, new]))
+        )
+        viewModel.fetch()
+
+        XCTAssertEqual(viewModel.astro(at: 0).title, "New Earth")
+
+        viewModel.search(query: "moon")
+        XCTAssertEqual(viewModel.numberOfItems, 1)
+        XCTAssertEqual(viewModel.astro(at: 0).title, "Old Moon")
+
+        viewModel.search(query: "")
+        XCTAssertEqual(viewModel.numberOfItems, 2)
+    }
+
     private static func name(of state: AstroListViewModel.State) -> String {
         switch state {
         case .idle: return "idle"
@@ -66,4 +88,3 @@ private final class StubAstroService: AstroServicing {
         completion(result)
     }
 }
-

@@ -6,7 +6,7 @@
 
 - [x] 加入 loading、empty、error 三種明確畫面狀態；錯誤畫面提供「重試」，不要只顯示一次性 alert。
 - [x] 驗證 HTTP status code 與 MIME type，保留底層 decoding error，讓錯誤可診斷。
-- [ ] 對 Service 做完整 dependency injection。目前已完成 `AstroService`／ViewModel，`ImageLoader` 待後續處理。
+- [x] 對 `AstroService` 與 `ImageLoader` 做 dependency injection，避免 ViewModel／Cell 綁死具體實作。
 - [ ] 擴充 unit tests。目前已涵蓋成功解碼、格式錯誤與 ViewModel 狀態轉換，URLSession 邊界與日期顯示待補。
 - README 放入真實截圖或 30–60 秒操作 GIF，移除 placeholder 說明，並寫清楚自己的設計決策與取捨。
 - [x] 加入 GitHub Actions 執行 build 與 tests；首次 workflow 執行後再確認 runner 相容性。
@@ -14,9 +14,9 @@
 ## P1：強化使用體驗與技術深度
 
 - 支援 pull-to-refresh、離線快取，以及上次成功資料的 fallback。
-- 加入搜尋、日期排序或收藏，讓作品有清楚且可展示的使用情境。
+- [x] 加入標題／描述／作者搜尋與日期排序，形成可展示的使用情境；收藏待後續評估。
 - 改善 Accessibility：Dynamic Type、VoiceOver label、對比度、按鈕觸控範圍與 Reduce Motion。
-- 圖片載入加入同 URL request coalescing，避免多個 cell 重複下載同一張圖；快取 cost 使用解碼後像素記憶體，而非壓縮資料大小。
+- [x] 圖片載入加入同 URL request coalescing，避免多個 cell 重複下載同一張圖；快取 cost 使用解碼後像素記憶體。
 - 將 URLSession、decoder 與 endpoint 抽象化，讓測試可使用 mock URLProtocol 或 fake service。
 
 ## P2：現代化方向（需能說明取捨再做）

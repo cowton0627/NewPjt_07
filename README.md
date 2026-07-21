@@ -37,6 +37,9 @@
 - loading / empty / error 狀態與重試、下拉更新
 - Service protocol dependency injection，可用 fake service 隔離網路進行測試
 - HTTP status code、Content-Type 與 decoding error 邊界處理
+- 同 URL 圖片請求合併，cell 個別取消不會中斷其他訂閱者
+- 依日期由新到舊排列，支援標題、描述與作者搜尋
+- VoiceOver 說明與 Dynamic Type 狀態文字
 
 ---
 

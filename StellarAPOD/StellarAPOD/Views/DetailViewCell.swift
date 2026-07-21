@@ -16,7 +16,8 @@ class DetailViewCell: UITableViewCell {
     @IBOutlet weak var cpyLabel: UILabel!
     @IBOutlet weak var desLabel: UILabel!
 
-    private var currentTask: URLSessionDataTask?
+    var imageLoader: ImageLoading = ImageLoader.shared
+    private var currentTask: ImageLoadCancellable?
 
     private lazy var indicator: UIActivityIndicatorView = {
         let v = UIActivityIndicatorView(style: .large)
@@ -133,7 +134,7 @@ class DetailViewCell: UITableViewCell {
         guard let url = url else { return }
         indicator.startAnimating()
 
-        currentTask = ImageLoader.shared.load(
+        currentTask = imageLoader.load(
             from: url,
             targetSize: showImg.bounds.size
         ) { [weak self] image in

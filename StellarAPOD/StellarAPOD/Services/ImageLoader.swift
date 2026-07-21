@@ -2,81 +2,138 @@
 //  ImageLoader.swift
 //  StellarAPOD
 //
-//  非主線程下載 + NSCache 記憶體快取 + ImageIO downsample。
-//  caller 重用 cell 時可 cancel 回傳的 task，避免「晚到的圖蓋掉新 cell」。
-//
 
 import UIKit
 
-final class ImageLoader {
-    static let shared = ImageLoader()
+protocol ImageLoadCancellable {
+    func cancel()
+}
 
-    private let cache = NSCache<NSURL, UIImage>()
-
-    private init() {
-        cache.totalCostLimit = 100 * 1024 * 1024   // 約 100 MB
-    }
-
-    /// 載入圖片：先查 cache，沒有就背景下載 + downsample + 存 cache。
-    /// - Returns: 真的有發出網路請求時回傳 task；命中 cache 時回傳 nil。
+protocol ImageLoading {
     @discardableResult
     func load(from url: URL,
               targetSize: CGSize,
-              completion: @escaping (UIImage?) -> Void) -> URLSessionDataTask? {
+              completion: @escaping (UIImage?) -> Void) -> ImageLoadCancellable?
+}
 
+final class ImageLoader: ImageLoading {
+    static let shared = ImageLoader()
+
+    private struct PendingRequest {
+        let task: URLSessionDataTask
+        var completions: [UUID: (UIImage?) -> Void]
+    }
+
+    private let cache = NSCache<NSURL, UIImage>()
+    private let session: URLSession
+    private let lock = NSLock()
+    private var pendingRequests: [URL: PendingRequest] = [:]
+
+    init(session: URLSession = .shared) {
+        self.session = session
+        cache.totalCostLimit = 100 * 1024 * 1024
+    }
+
+    @discardableResult
+    func load(from url: URL,
+              targetSize: CGSize,
+              completion: @escaping (UIImage?) -> Void) -> ImageLoadCancellable? {
         if let cached = cache.object(forKey: url as NSURL) {
             completion(cached)
             return nil
         }
 
-        let task = URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
-            if let error = error {
-                // 被 cancel 也會走這條（NSURLErrorCancelled），不視為錯誤
-                let nsError = error as NSError
-                if nsError.domain == NSURLErrorDomain && nsError.code == NSURLErrorCancelled {
-                    return
-                }
-                print("ImageLoader error: \(error)")
-                DispatchQueue.main.async { completion(nil) }
-                return
-            }
-
-            guard let data = data,
-                  let image = Self.downsample(data: data, to: targetSize) else {
-                DispatchQueue.main.async { completion(nil) }
-                return
-            }
-
-            self?.cache.setObject(image, forKey: url as NSURL, cost: data.count)
-            DispatchQueue.main.async { completion(image) }
+        let requestID = UUID()
+        lock.lock()
+        if var pending = pendingRequests[url] {
+            pending.completions[requestID] = completion
+            pendingRequests[url] = pending
+            lock.unlock()
+            return ImageLoadToken { [weak self] in self?.cancel(url: url, id: requestID) }
         }
+
+        let task = session.dataTask(with: url) { [weak self] data, _, error in
+            let image: UIImage?
+            if error == nil, let data = data {
+                image = Self.downsample(data: data, to: targetSize)
+            } else {
+                image = nil
+            }
+            self?.finish(url: url, image: image)
+        }
+        pendingRequests[url] = PendingRequest(
+            task: task,
+            completions: [requestID: completion]
+        )
+        lock.unlock()
         task.resume()
-        return task
+
+        return ImageLoadToken { [weak self] in self?.cancel(url: url, id: requestID) }
     }
 
-    /// 在 decode 時就縮到目標尺寸，避免載入後再 resize 浪費記憶體。
+    private func finish(url: URL, image: UIImage?) {
+        if let image = image, let cgImage = image.cgImage {
+            let decodedCost = cgImage.bytesPerRow * cgImage.height
+            cache.setObject(image, forKey: url as NSURL, cost: decodedCost)
+        }
+
+        lock.lock()
+        let callbacks = pendingRequests.removeValue(forKey: url)
+            .map { Array($0.completions.values) } ?? []
+        lock.unlock()
+        DispatchQueue.main.async {
+            callbacks.forEach { $0(image) }
+        }
+    }
+
+    private func cancel(url: URL, id: UUID) {
+        lock.lock()
+        guard var pending = pendingRequests[url] else {
+            lock.unlock()
+            return
+        }
+        pending.completions.removeValue(forKey: id)
+        if pending.completions.isEmpty {
+            pendingRequests.removeValue(forKey: url)
+            lock.unlock()
+            pending.task.cancel()
+        } else {
+            pendingRequests[url] = pending
+            lock.unlock()
+        }
+    }
+
     private static func downsample(data: Data, to pointSize: CGSize) -> UIImage? {
         let sourceOptions: [CFString: Any] = [kCGImageSourceShouldCache: false]
         guard let source = CGImageSourceCreateWithData(data as CFData,
                                                        sourceOptions as CFDictionary) else {
             return nil
         }
-        let scale = UIScreen.main.scale
-        // 至少給 100pt 下限，避免 cell 還沒 layout 時 size 為 0
         let maxDimensionInPoints = max(pointSize.width, pointSize.height, 100)
-        let maxDimensionInPixels = maxDimensionInPoints * scale
-
-        let downsampleOptions: [CFString: Any] = [
+        let options: [CFString: Any] = [
             kCGImageSourceCreateThumbnailFromImageAlways: true,
             kCGImageSourceShouldCacheImmediately: true,
             kCGImageSourceCreateThumbnailWithTransform: true,
-            kCGImageSourceThumbnailMaxPixelSize: maxDimensionInPixels
+            kCGImageSourceThumbnailMaxPixelSize: maxDimensionInPoints * UIScreen.main.scale
         ]
-        guard let cgImage = CGImageSourceCreateThumbnailAtIndex(source,
-                                                                0,
-                                                                downsampleOptions as CFDictionary) else {
-            return nil
-        }
+        guard let cgImage = CGImageSourceCreateThumbnailAtIndex(
+            source, 0, options as CFDictionary
+        ) else { return nil }
         return UIImage(cgImage: cgImage)
+    }
+}
+
+private final class ImageLoadToken: ImageLoadCancellable {
+    private let onCancel: () -> Void
+    private var isCancelled = false
+
+    init(onCancel: @escaping () -> Void) {
+        self.onCancel = onCancel
+    }
+
+    func cancel() {
+        guard !isCancelled else { return }
+        isCancelled = true
+        onCancel()
     }
 }

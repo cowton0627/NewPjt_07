@@ -40,6 +40,7 @@ class AstroCollectionViewController: UICollectionViewController {
         configureFlowLayout()
         bindViewModel()
         configureRefreshControl()
+        configureSearch()
 
         viewModel.fetch()
     }
@@ -67,6 +68,17 @@ class AstroCollectionViewController: UICollectionViewController {
         collectionView.backgroundView = stateView
     }
 
+    private func configureSearch() {
+        let controller = UISearchController(searchResultsController: nil)
+        controller.searchResultsUpdater = self
+        controller.obscuresBackgroundDuringPresentation = false
+        controller.searchBar.placeholder = "搜尋標題、描述或作者"
+        controller.searchBar.accessibilityLabel = "搜尋每日天文圖"
+        navigationItem.searchController = controller
+        navigationItem.hidesSearchBarWhenScrolling = true
+        definesPresentationContext = true
+    }
+
     @objc private func refresh() {
         viewModel.fetch()
     }
@@ -85,7 +97,8 @@ class AstroCollectionViewController: UICollectionViewController {
             collectionView.reloadData()
         case .empty:
             collectionView.reloadData()
-            stateView.showEmpty()
+            let isSearching = !(navigationItem.searchController?.searchBar.text?.isEmpty ?? true)
+            stateView.showEmpty(isSearching: isSearching)
         case .failed(let message):
             stateView.showError(message)
         }
@@ -145,6 +158,12 @@ class AstroCollectionViewController: UICollectionViewController {
 
 }
 
+extension AstroCollectionViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        viewModel.search(query: searchController.searchBar.text)
+    }
+}
+
 private final class CollectionStateView: UIView {
     var onRetry: (() -> Void)?
 
@@ -192,8 +211,12 @@ private final class CollectionStateView: UIView {
         accessibilityLabel = titleLabel.text
     }
 
-    func showEmpty() {
-        show(title: "目前沒有天文圖", message: "請稍後再重新整理。", canRetry: true)
+    func showEmpty(isSearching: Bool) {
+        if isSearching {
+            show(title: "找不到結果", message: "請嘗試其他關鍵字。", canRetry: false)
+        } else {
+            show(title: "目前沒有天文圖", message: "請稍後再重新整理。", canRetry: true)
+        }
     }
 
     func showError(_ message: String) {

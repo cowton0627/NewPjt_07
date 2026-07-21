@@ -20,6 +20,7 @@ final class AstroListViewModel {
     }
 
     private(set) var astros: [Astro] = []
+    private var allAstros: [Astro] = []
     private let service: AstroServicing
 
     init(service: AstroServicing = AstroService.shared) {
@@ -37,14 +38,32 @@ final class AstroListViewModel {
         AstroCellViewModel(astro: astros[index])
     }
 
+    func search(query: String?) {
+        let term = query?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        guard !term.isEmpty else {
+            astros = allAstros
+            onStateChange?(astros.isEmpty ? .empty : .loaded)
+            return
+        }
+        astros = allAstros.filter { astro in
+            [astro.title, astro.description, astro.copyright]
+                .compactMap { $0 }
+                .contains { $0.localizedCaseInsensitiveContains(term) }
+        }
+        onStateChange?(astros.isEmpty ? .empty : .loaded)
+    }
+
     func fetch() {
         onStateChange?(.loading)
         service.fetchAstros { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let list):
-                self.astros = list
-                self.onStateChange?(list.isEmpty ? .empty : .loaded)
+                self.allAstros = list.sorted {
+                    ($0.date ?? .distantPast) > ($1.date ?? .distantPast)
+                }
+                self.astros = self.allAstros
+                self.onStateChange?(self.astros.isEmpty ? .empty : .loaded)
             case .failure(let error):
                 self.onStateChange?(.failed(error.localizedDescription))
             }
