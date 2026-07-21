@@ -109,6 +109,13 @@ Service → 純資料來源，主線程回呼
 
 ---
 
+## 專案文件
+
+- [Changelog](CHANGELOG.md)：重要版本與命名變更
+- [面試展示改善路線](docs/INTERVIEW_ROADMAP.md)：作品集優化優先級與 Demo 建議
+
+---
+
 ## 資料來源
 
 [cmmobile/NasaDataSet](https://github.com/cmmobile/NasaDataSet) 提供的 `apod.json`，由 NASA APOD 整理而來。
