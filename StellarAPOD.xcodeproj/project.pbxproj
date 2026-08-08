@@ -67,6 +67,8 @@
 		F89A60030D7D311E09AAF6CE /* ImageLoaderTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ImageLoaderTests.swift; sourceTree = "<group>"; };
 		A105000000000000000001AA /* AstroServiceTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AstroServiceTests.swift; sourceTree = "<group>"; };
 		A105000000000000000002AA /* AstroDetailViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AstroDetailViewModelTests.swift; sourceTree = "<group>"; };
+		FEED00000000000000000000 /* Signing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config/Signing.xcconfig; sourceTree = SOURCE_ROOT; };
+		FEED00000000000000000002 /* Signing.local.xcconfig.example */ = {isa = PBXFileReference; lastKnownFileType = text; path = Config/Signing.local.xcconfig.example; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +192,15 @@
 				3C6B5460BCF2E8169161198A /* iOS */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FEED00000000000000000001 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				FEED00000000000000000000 /* Signing.xcconfig */,
+				FEED00000000000000000002 /* Signing.local.xcconfig.example */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -349,6 +360,7 @@
 /* Begin XCBuildConfiguration section */
 		1A7FEBDABC8C6A45708F51D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FEED00000000000000000000 /* Signing.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -480,6 +492,7 @@
 		};
 		2970DA9426789F2000646FAC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FEED00000000000000000000 /* Signing.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -498,6 +511,7 @@
 		};
 		2970DA9526789F2000646FAC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FEED00000000000000000000 /* Signing.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -516,6 +530,7 @@
 		};
 		8896705AF95D09FD0540A3B6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FEED00000000000000000000 /* Signing.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_OBJC_WEAK = NO;

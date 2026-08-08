@@ -38,3 +38,6 @@ fastlane/test_output
 .env
 .env.*
 !.env.example
+
+# Local signing settings (Team ID stays off git)
+Config/Signing.local.xcconfig
